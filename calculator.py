@@ -1,5 +1,5 @@
 import json
-import validator
+from validator import *
 from matrix import Matrix
 
 #Matrix addition: adds m1 with m2 bot with dimension = mxn, resulting in matrix m3 with dimension = mxn
@@ -10,9 +10,9 @@ def add(m1, m2):
 		#create a new Matrix m3
 		#iterate over each element ij of m1
 		 	#m3ij = m1ij + m2ij
-	validator.checkMatrixValidity(m1);
-	validator.checkMatrixValidity(m2);
-	validator.checkEqualSize(m1, m2);
+	checkMatrixValidity(m1);
+	checkMatrixValidity(m2);
+	checkEqualSize(m1, m2);
 
 	m3 = Matrix({});
 
@@ -26,7 +26,7 @@ def multiplyWithScalar(m1, k):
 	#Alghorithm:
 	#iterate over each element ij of m1
 		 	#m2ij = m1ij * k
-	validator.checkMatrixValidity(m1);
+	checkMatrixValidity(m1);
 		 	
 	m2 = Matrix({});
 
