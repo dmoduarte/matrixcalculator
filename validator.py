@@ -9,7 +9,7 @@ def checkMatrixValidity(m):
 		if len(row) != firstRowLen:
 			raise ValueError("Matrix is not valid")
 
-#checks if m1 and m2 have the same dimension
+#checks if m1 and m2 have the same dimension i.e both have dimension = mxn
 def areEqualSize(m1, m2):
 	m1Dim = m1.dim();
 	m2Dim = m2.dim();
