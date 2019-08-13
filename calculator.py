@@ -16,9 +16,9 @@ def add(m1, m2):
 
 	m3 = Matrix({});
 
-	for i, iCols in m1.items():
-		for j, m1_ij in iCols.items():
-			m3.setValueAt(i, j, m1_ij + m2.getValueAt(i, j))
+	add_ij = lambda i, j, m1_ij: m3.setValueAt(i, j, m1_ij + m2.getValueAt(i, j));
+
+	doForEachRowColumnVal(m1, add_ij);
 
 	return m3;
 #Scalar multiplication: multiplies a matrix m1, with dimension = mxn, with a scalar k, resulting in a matrix m2 with dimension = mxn
@@ -30,11 +30,16 @@ def multiplyWithScalar(m1, k):
 		 	
 	m2 = Matrix({});
 
-	for i, iCols in m1.items():
-		for j, m1_ij in iCols.items(): 	
-			m2.setValueAt(i, j, m1_ij * k)
+	multiply_ij = lambda i, j, m1_ij: m2.setValueAt(i, j, m1_ij * k);
+
+	doForEachRowColumnVal(m1, multiply_ij);
 
 	return m2;
+
+def doForEachRowColumnVal(m, fn):
+	for i, iCols in m.items():
+		for j, m_ij in iCols.items(): 	
+			fn(i, j, m_ij)
 
 m1 = Matrix({'1':{'1':1,'2':3}, '2':{'1':3, '2':4}});
 m2 = Matrix({'1':{'1':2,'2':3}, '2':{'1':4, '2':4}});
