@@ -1,28 +1,46 @@
 class Matrix:
-	def __init__(self, matrixDict):
-		self.matrix = matrixDict
+    def __init__(self, matrixDict):
+        self.matrix = matrixDict
 
-	def setValueAt(self, i, j, value):
-		#print(i, j, self.matrix, value);
-		if i in self.matrix:
-			self.matrix[i][j] = value;
-		else:
-			newCell = {};
-			newCell[j] = value;
-			self.matrix[i] = newCell;
+    def setValueAt(self, i, j, value):
+        #print(i, j, self.matrix, value);
+        if i in self.matrix:
+            self.matrix[i][j] = value
+        else:
+            newCell = {}
+            newCell[j] = value
+            self.matrix[i] = newCell
 
-	def getValueAt(self, i, j):
-		return self.matrix[i][j];	
+    def forEachCell(self, fn):
+        for row, cols in self.matrix.items():
+            for col, value in cols.items():
+                cell = Cell(row, col, value)
+                fn(cell)
 
-	# return the dimension of the matrix mxn
-	# {m:n}, where m is the number of rows and n the cols
-	# assumes the matrix representation is valid
-	def dim(self):
-		dim = {};
-		dim['m'] = len(self.matrix);
-		dim['n'] = len(self.matrix.values()[0]);    
-		return dim;
+    def getValueAt(self, i, j):
+        return self.matrix[i][j]
 
-	# returns key value pairs, where key is the row and value is the column and the cell
-	def items(self):
-		return self.matrix.items();
+    # return the dimension of the matrix mxn
+    # {m:n}, where m is the number of rows and n the cols
+    # assumes the matrix representation is valid
+    def dim(self):
+        dim = {}
+        dim['m'] = len(self.matrix)
+        dim['n'] = len(self.matrix.values()[0])
+        return dim
+
+
+class Cell:
+    def __init__(self, row, column, value):
+        self.row = row
+        self.column = column
+        self.value = value
+
+    def getRow(self):
+        return self.row
+
+    def getColumn(self):
+        return self.column
+
+    def getValue(self):
+        return self.value
