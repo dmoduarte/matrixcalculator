@@ -2,7 +2,7 @@ import json
 from validator import *
 from matrix import *
 
-# Matrix addition: adds m1 with m2 bot with dimension = mxn, resulting in matrix m3 with dimension = mxn
+# Matrix addition: adds m1 with m2 both with dimension = mxn, resulting in matrix m3 with dimension = mxn
 
 
 def add(m1, m2):
@@ -41,7 +41,7 @@ def multiplyWithScalar(m1, k):
 
 def multiplyMatrices(m1, m2):
     # Alghorithm
-    # Check the matrix validaty
+    # Check the matrix validity
     # Ensure matrix product is defined:
                 # m1*m2 is only possible if dim(m1) = mxn and
                 # dim(m2) = n*p. I.e the number of cols in m1 = number of rows in m2
