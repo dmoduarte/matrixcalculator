@@ -48,7 +48,11 @@ def multiplyMatrices(m1, m2):
                 # if this is true then m1*m2 results in a matrix m3 where dim(m3) = m*p
     checkMatrixValidity(m1)
     checkMatrixValidity(m2)
+    
     productDefinition = checkMatrixProduct(m1, m2)
+
+    #invert matrix m2 representation to col -> row
+    newM2 = invertMatrixRepresentation(m2)
 
 m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
 m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})

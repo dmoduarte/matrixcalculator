@@ -1,3 +1,12 @@
+# Inverts the matrix representation.
+# If the matrix representation is row => columns, by applying this function it'll change to column => rows
+# This shall bean idempotent operation by returning a new matrix i.e does not change the argument matrix
+
+
+def invertMatrixRepresentation(matrix):
+    return {}
+
+
 class Matrix:
     def __init__(self, matrixDict):
         self.matrix = matrixDict
