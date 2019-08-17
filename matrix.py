@@ -1,13 +1,5 @@
 from numbers import Number
 
-# Inverts the matrix representation.
-# If the matrix representation is row => columns, by applying this function it'll change to column => rows
-# This shall bean idempotent operation by returning a new matrix i.e does not change the argument matrix
-
-
-def invertMatrixRepresentation(matrix):
-    return {}
-
 
 class Matrix:
     def __init__(self, matrixDict):
@@ -43,6 +35,23 @@ class Matrix:
         dim['m'] = len(self.matrix)
         dim['n'] = len(self.matrix.values()[0])
         return dim
+
+    def extractRowVectors(self):
+        vectors = []
+        for row in self.matrix.values():
+            vectors.append(row.values())
+
+        return vectors
+
+    def extractColumnVectors(self):
+        dim = self.dim()
+        vectors = [[0 for i in range(dim['m'])] for j in range(dim['n'])]
+        print(vectors)
+
+        def insertValueAt(cell): vectors[int(cell.getColumn()) - 1][int(cell.getRow()) - 1] = cell.getValue()
+        self.forEachCell(insertValueAt)
+
+        return vectors
 
 
 class Cell:

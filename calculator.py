@@ -62,6 +62,8 @@ def multiplyMatrices(m1, m2):
     rowVectors = m1.extractRowVectors()
     columnVectors = m2.extractColumnVectors()
 
+    print(rowVectors)
+    print(columnVectors)
 
 m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
 m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
