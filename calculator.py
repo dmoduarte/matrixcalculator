@@ -45,14 +45,23 @@ def multiplyMatrices(m1, m2):
     # Ensure matrix product is defined:
                 # m1*m2 is only possible if dim(m1) = mxn and
                 # dim(m2) = n*p. I.e the number of cols in m1 = number of rows in m2
-                # if this is true then m1*m2 results in a matrix m3 where dim(m3) = m*p
+                # if this is true then m1*m2 shall result in a matrix m3 where dim(m3) = m*p
+
+    # extract row vectors of m1
+    # extract column vectors of m2
+    # for each row vector of m1: rN
+        # for each column vector of m2: cM
+        # calculate product of rN and cM = rN.cM
+        # insert rN.cM at position (N,M) of m3
+
     checkMatrixValidity(m1)
     checkMatrixValidity(m2)
     
     productDefinition = checkMatrixProduct(m1, m2)
 
-    #invert matrix m2 representation to col -> row
-    newM2 = invertMatrixRepresentation(m2)
+    rowVectors = m1.extractRowVectors()
+    columnVectors = m2.extractColumnVectors()
+
 
 m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
 m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
