@@ -9,6 +9,7 @@ def checkMatrixValidity(m):
     for row in sliced:
         if len(row) != firstRowLen:
             raise ValueError("Matrix is not valid")
+            #todo: check if row -> col is sequential
 
 # Checks if matrix product between m1 and m2 is defined
 # If dim(m1) = mxn and dim(m2) = nxp then the product is defined.

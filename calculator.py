@@ -57,7 +57,7 @@ def multiplyMatrices(m1, m2):
 m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
 m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
 
-print(json.dumps(vars(m1), indent=4))
-print(json.dumps(vars(m2), indent=4))
-print(json.dumps(vars(add(m1, m2)), indent=4))
-print(json.dumps(vars(multiplyWithScalar(add(m1, m2), 2)), indent=4))
+#print(json.dumps(vars(m1), indent=4))
+#print(json.dumps(vars(m2), indent=4))
+#print(json.dumps(vars(add(m1, m2)), indent=4))
+#print(json.dumps(vars(multiplyWithScalar(add(m1, m2), 2)), indent=4))
