@@ -37,16 +37,17 @@ class Matrix:
         return dim
 
     def extractRowVectors(self):
-        vectors = []
-        for row in self.matrix.values():
-            vectors.append(row.values())
+        dim = self.dim()
+        vectors = [[0 for i in range(dim['n'])] for j in range(dim['m'])]
 
+        def insertValueAt(cell): vectors[int(cell.getRow()) - 1][int(cell.getColumn()) - 1] = cell.getValue()
+        self.forEachCell(insertValueAt)
+      
         return vectors
 
     def extractColumnVectors(self):
         dim = self.dim()
         vectors = [[0 for i in range(dim['m'])] for j in range(dim['n'])]
-        print(vectors)
 
         def insertValueAt(cell): vectors[int(cell.getColumn()) - 1][int(cell.getRow()) - 1] = cell.getValue()
         self.forEachCell(insertValueAt)

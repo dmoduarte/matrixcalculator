@@ -62,8 +62,24 @@ def multiplyMatrices(m1, m2):
     rowVectors = m1.extractRowVectors()
     columnVectors = m2.extractColumnVectors()
 
-    print(rowVectors)
-    print(columnVectors)
+    m3 = Matrix({})
+
+    rowVectorCount = 1
+    for rowVector in rowVectors:
+        columnVectorCount = 1
+        
+        for columnVector in columnVectors:
+            dProd = dotProduct(rowVector, columnVector)
+            m3.setValueAt(rowVectorCount, columnVectorCount, dProd)
+            columnVectorCount += 1
+
+        rowVectorCount += 1
+
+    return m3;
+
+def dotProduct(vector1, vector2):
+    return sum([vector1[i]*vector2[i] for i in range(len(vector1))])
+
 
 m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
 m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
