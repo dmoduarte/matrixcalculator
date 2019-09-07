@@ -1,49 +1,68 @@
 from enum import Enum, auto
 from util import linked_list
 
+
 class Operations(Enum):
-	KMULT = 4
-	MULT = 3
-	ADD = 2
-	SUB = 1
+    KMULT = 4
+    MULT = 3
+    ADD = 2
+    SUB = 1
 
 class OperationRequest:
-	def __init__(self, operator, matrix1, matrix2):
-		self.operator = operator
-		self.matrix1 = matrix1
-		self.matrix2 = matrix2
+    def __init__(self, operator, matrix1, matrix2):
+        self.operator = operator
+        self.matrix1 = matrix1
+        self.matrix2 = matrix2
 
-	def setPrevious(previousOperation):
-		self.prevOp = previousOperation
+    def setPrevious(operationRequest):
+        self.previous = operationRequest
 
-	def setNext(nextOperation):
-		self.nextOp = nextOperation	
-		
+    def setNext(operationRequest):
+        self.next = operationRequest
+
+    def setResult(matrix):
+    	self.result = matrix
+
+    def getResult():
+    	return self.result;
+
 def consumeRequest(request):
-   operationChain = buildOperationChain(request)
+    operationChain = buildOperationChain(request)
 
 def buildOperationChain(request):
-	head = None
+    head = None
+    previousRequest = None
 
-	previousRequest = None
-	for index, item in enumerate(request):
-		if isOperator(item):
-			continue
+    for index, item in enumerate(request):
 
-		matrix1 = request[index]
-		operator = request[index+1]
-		matrix2 = request[index+2]
+    	if index == len(request) - 2:
+    		return 
 
-		opRequest = OperationRequest(operator, matrix1, matrix2)
+    	if isOperator(item):
+    		continue
+    	
+    	opRequest = buildOperationRequest(index, request)
 
-		if head is None:
-			head = opRequest
+    	if head is None:
+    		head = opRequest	
 
-		if previousRequest is not None:
-			opRequest.setPrevious(previousRequest)
-			previousRequest.setNext(opRequest)	
+    	if previousRequest is not None:
+    		setDependency(previousRequest, opRequest)
 
-	return head
+    	previousRequest = opRequest
 
-def isOperator(item): 
-	return "op" in item
+    return head
+
+def buildOperationRequest(currentIndex, requestList):
+	matrix1 = requestList[currentIndex]
+	operator = requestList[currentIndex+1]
+	matrix2 = requestList[currentIndex+2]
+
+	return OperationRequest(operator, matrix1, matrix2)
+
+def setDependency(previousOp, nextOp):
+    previousOp.setNext(nextOp)
+    nextOp.setPrevious(previousOp)
+
+def isOperator(item):
+    return "op" in item
