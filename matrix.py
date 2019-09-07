@@ -33,7 +33,7 @@ class Matrix:
     def dim(self):
         dim = {}
         dim['m'] = len(self.matrix)
-        dim['n'] = len(self.matrix.values()[0])
+        dim['n'] = len(list(self.matrix.values())[0])
         return dim
 
     def extractRowVectors(self):
