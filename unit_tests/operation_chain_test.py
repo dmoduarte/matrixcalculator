@@ -55,8 +55,6 @@ class TestOperationChain(unittest.TestCase):
             requestSample[2]
         )
 
-        #print(operationChain.getSize())
-
         operation = operationChain.getOperationAtIndex(1)
 
         self.assertOperationElementEquality(
@@ -73,7 +71,23 @@ class TestOperationChain(unittest.TestCase):
             operation.rightOperand,
             requestSample[4]
         )
- 
+
+        operation = operationChain.getOperationAtIndex(2)
+
+        self.assertOperationElementEquality(
+            operation.leftOperand,
+            requestSample[4]
+        )
+
+        self.assertOperationElementEquality(
+            operation.operator,
+            requestSample[5]
+        )
+
+        self.assertOperationElementEquality(
+            operation.rightOperand,
+            requestSample[6]
+        )
 
     def assertOperationEquality(self, operationChain, position):
         operation = operationChain.getOperationAtIndex(position)

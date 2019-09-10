@@ -33,19 +33,19 @@ class OperationChain:
         currentNode = self.head
         while(currentNode is not None and idx < index):
             currentNode = currentNode.next
-            print(currentNode)
             idx += 1
-
-        print(idx)
+            
         return currentNode
 
     ####
     def addBack(self, operation):
         if self.head is None and self.tail is None:
-            self.head = self.tail = operation
+            self.head = operation
+            self.tail = operation
         else:
             operation.previous = self.tail
-            self.tail = self.tail.next = operation
+            self.tail.next = operation
+            self.tail = operation
 
         self.size += 1	
     
