@@ -20,3 +20,6 @@ class TestMatrix(unittest.TestCase):
             '2': {'1': 4, '2': 5, '3': 9}
         })
         self.assertEqual(matrix.dim(), {'m': 2, 'n': 3})
+
+if __name__ == '__main__':
+    unittest.main()

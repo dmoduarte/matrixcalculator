@@ -57,7 +57,7 @@ def multiplyMatrices(m1, m2):
     checkMatrixValidity(m1)
     checkMatrixValidity(m2)
     
-    # TODO check product definition
+    # check product definition
     # productDefinition = checkMatrixProduct(m1, m2)
 
     rowVectors = m1.extractRowVectors()
