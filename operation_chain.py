@@ -1,6 +1,9 @@
 class OperationChain:
 
 	def __init__(self):
+		self.head = None
+		self.tail = None
+		self.nextOp = None
 		self.idx = 0
 
 	def __iter__(self):
@@ -21,7 +24,7 @@ class OperationChain:
 		self.idx += 1
 		return next
 
-	def addBack(operartion):
+	def addBack(self, operation):
 		if self.head is None and self.tail is None:
 			self.head = self.tail = operation
 		else:
@@ -34,19 +37,19 @@ class OperationChain:
 	        self.leftOperand = leftOperand
 	        self.rightOperand = rightOperand
 
-	    def setPrevious(operationRequest):
+	    def setPrevious(self, operationRequest):
 	        self.previous = operationRequest
 
-	    def setNext(operationRequest):
+	    def setNext(self, operationRequest):
 	        self.next = operationRequest
 
-	    def setResult(result):
+	    def setResult(self, result):
 	    	self.result = result
 
-	    def getOperator():
-	    	return self.operator;	
+	    def getOperator(self):
+	    	return self.operator	
 
-	    def getResult():
+	    def getResult(self):
 	    	return self.result 
 
 def parseRequest(request):
@@ -64,7 +67,7 @@ def parseRequest(request):
     	operator = request[index+1]
     	rightOperand = request[index+2]	
     	
-    	operationChain.addBack(OperationRequest(operator, leftOperand, rightOperand))
+    	operationChain.addBack(OperationChain.OperationRequest(operator, leftOperand, rightOperand))
 
     return operationChain
 
