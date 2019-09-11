@@ -66,11 +66,23 @@ class OperationChain:
         def setNext(self, operationRequest):
             self.next = operationRequest
 
+        def setLeftOperand(self, leftOperand):
+            self.leftOperand = leftOperand
+
+        def setRightOperand(self, rightOperand):
+            self.rightOperand = rightOperand        
+
         def setResult(self, result):
             self.result = result
 
         def getOperator(self):
             return self.operator	
+
+        def getLeftOperand(self):
+            return self.leftOperand
+
+        def getRightOperand(self):
+            return self.rightOperand    
 
         def getResult(self):
             return self.result 
