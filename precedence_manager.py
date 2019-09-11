@@ -13,13 +13,13 @@ class OperatorRank(Enum):
 class OperationDelegate:
     @staticmethod
     def calculateOperation(operation):
-        return OperationDelegate.operationLookup()[operation](
+        return OperationDelegate.operationMapping()[operation](
                 operation.getLeftOperand(),
                 operation.getRightOperand()
             )
             
     @staticmethod
-    def operationLookup():
+    def operationMapping():
         return {
             'KMULT': multiplyWithScalar,
             'MULT': multiplyMatrices,
