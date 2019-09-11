@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from heapq import *
+import heapq
 from util import linked_list
 from operation_chain import *
 
@@ -14,6 +14,11 @@ class OperatorRank(Enum):
 def consumeRequest(request):
     operationChain = parseRequest(request)
 
+    heap = buildPrecedenceHeap(operationChain)
+    
+    print(heapq)
+
+def buildPrecedenceHeap(operationChain):
     #build heap
     heap = []
     for operationRequest in operationChain:
@@ -23,4 +28,5 @@ def consumeRequest(request):
             heap, (operationPriority, operationRequest)
         )
 
-    print(heapq)
+    return heap    
+

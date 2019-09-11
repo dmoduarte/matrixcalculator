@@ -1,5 +1,5 @@
 import unittest
-from operation_chain import OperationChain, parseRequest, isOperator
+from operation_chain import OperationChain, parseRequest
 
 requestSample = [
     {
@@ -38,77 +38,47 @@ class TestOperationChain(unittest.TestCase):
 
     def test_operation_chain_elements(self):
         operationChain = parseRequest(requestSample)
-        operation = operationChain.getOperationAtIndex(0)
-
-        self.assertOperationElementEquality(
-            operation.leftOperand,
-            requestSample[0]
+        
+        self.compareParsedAgainstRequestedOperations(
+            operationChain.getOperationAtIndex(0),
+            0, 
+            1, 
+            2
         )
 
-        self.assertOperationElementEquality(
-            operation.operator,
-            requestSample[1]
+        self.compareParsedAgainstRequestedOperations(
+            operationChain.getOperationAtIndex(1),
+            2, 
+            3, 
+            4
         )
 
-        self.assertOperationElementEquality(
-            operation.rightOperand,
-            requestSample[2]
+        self.compareParsedAgainstRequestedOperations(
+            operationChain.getOperationAtIndex(2), 
+            4, 
+            5, 
+            6
         )
 
-        operation = operationChain.getOperationAtIndex(1)
-
-        self.assertOperationElementEquality(
-            operation.leftOperand,
-            requestSample[2]
+    def compareParsedAgainstRequestedOperations(self,
+                                                parsedOp,
+                                                leftRequestedOpIdx,
+                                                requestedOpIdx,
+                                                rightRequestedOpIdx):    
+        self.assertDictEqual(
+            parsedOp.leftOperand,
+            requestSample[leftRequestedOpIdx]
         )
 
-        self.assertOperationElementEquality(
-            operation.operator,
-            requestSample[3]
+        self.assertDictEqual(
+            parsedOp.operator,
+            requestSample[requestedOpIdx]
         )
 
-        self.assertOperationElementEquality(
-            operation.rightOperand,
-            requestSample[4]
+        self.assertDictEqual(
+            parsedOp.rightOperand,
+            requestSample[rightRequestedOpIdx]
         )
-
-        operation = operationChain.getOperationAtIndex(2)
-
-        self.assertOperationElementEquality(
-            operation.leftOperand,
-            requestSample[4]
-        )
-
-        self.assertOperationElementEquality(
-            operation.operator,
-            requestSample[5]
-        )
-
-        self.assertOperationElementEquality(
-            operation.rightOperand,
-            requestSample[6]
-        )
-
-    def assertOperationEquality(self, operationChain, position):
-        operation = operationChain.getOperationAtIndex(position)
-
-        self.assertOperationElementEquality(
-            operation.leftOperand,
-            requestSample[position]
-        )
-
-        self.assertOperationElementEquality(
-            operation.operator,
-            requestSample[position+1]
-        )
-
-        self.assertOperationElementEquality(
-            operation.rightOperand,
-            requestSample[position+2]
-        )
-
-    def assertOperationElementEquality(self, parsed, request):
-        self.assertDictEqual(parsed, request)         
-
+   
 if __name__ == '__main__':
     unittest.main()
