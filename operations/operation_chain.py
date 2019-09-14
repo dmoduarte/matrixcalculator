@@ -45,6 +45,7 @@ class OperationChain:
             self.tail.next = operation
             self.tail = operation
 
+        operation.setPositionInChain(self.size)
         self.size += 1	
     
     def getSize(self):
@@ -57,6 +58,7 @@ class OperationChain:
             self.rightOperand = rightOperand
             self.next = None
             self.previous = None
+            self.positionInChain = -1
             self.calculated = False
 
         def setPrevious(self, operationRequest):
@@ -69,7 +71,10 @@ class OperationChain:
             self.leftOperand = leftOperand
 
         def setRightOperand(self, rightOperand):
-            self.rightOperand = rightOperand        
+            self.rightOperand = rightOperand  
+
+        def setPositionInChain(self, position):
+             self.positionInChain = position      
 
         def setCalculated(self, flag):
             self.calculated = flag
@@ -87,7 +92,10 @@ class OperationChain:
             return self.leftOperand
 
         def getRightOperand(self):
-            return self.rightOperand    
+            return self.rightOperand 
+
+        def getPositionInChain(self):
+            return self.positionInChain;       
 
         def isCalculated(self):
             return self.calculated 

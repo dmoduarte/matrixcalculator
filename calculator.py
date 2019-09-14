@@ -36,7 +36,7 @@ def createPrecedenceArray(operationChain):
         operationPriority = -1 * OperatorRank[operationRequest.getOperator()['op']].value
         print( "%s = %s" % (OperatorRank[operationRequest.getOperator()['op']], operationPriority) )
         heapq.heappush(
-            heap, (operationPriority, operationRequest)
+            heap, (operationPriority, operationRequest.getPositionInChain(), operationRequest)
         )
 
     return heap    
