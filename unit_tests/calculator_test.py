@@ -1,45 +1,35 @@
 import unittest
 import calculator
 from operations import operation_chain
+from test_utils import MatrixCalculatorTestCases
 import heapq
 
-requestSample = [
-    {
-        "1": {"1": 1, "2": 3},
-        "2": {"1": 3, "2": 4}
-    },
-
-    {"op": "ADD"},
-
-    {
-        "1": {"1": 2, "2": 3},
-        "2": {"1": 4, "2": 4}
-    },
-
-    {"op": "ADD"},
-
-    {
-        "1": {"1": 1, "2": 0, "3": -3},
-         "2": {"1": -2, "2": 4, "3": 1}
-    },
-
-    {"op": "MULT"},
-
-    {
-        "1": {"1": 1, "2": 0, "3": 4, "4": 1},
-        "2": {"1": -2, "2": 3, "3": -1, "4": 5},
-        "3": {"1": 0, "2": -1, "3": 2, "4": 1}
-    }
-]
-
-class TestCalculator(unittest.TestCase):
+class TestCalculator(MatrixCalculatorTestCases):
     def test_operations_precedence(self):
-        operations = operation_chain.parseRequest(requestSample)
+        operations = operation_chain.parseRequest(self.getRequestSample())
         
         precedenceArray = calculator.createPrecedenceArray(operations)
         
-        for i in range(len(precedenceArray)):
-            print(heapq.heappop(precedenceArray))
+        self.compareParsedAgainstRequestSample(
+            heapq.heappop(precedenceArray)[2],
+            4,
+            5,
+            6
+        )
+    
+        self.compareParsedAgainstRequestSample(
+            heapq.heappop(precedenceArray)[2],
+            0,
+            1,
+            2
+        )
+    
+        self.compareParsedAgainstRequestSample(
+            heapq.heappop(precedenceArray)[2],
+            2,
+            3,
+            4
+        )   
 
 if __name__ == '__main__':
     unittest.main()
