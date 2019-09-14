@@ -1,13 +1,13 @@
 import unittest
 from matrix import Matrix
-from operations import *
+from operations import operations
 
 class TestCalculatorOperations(unittest.TestCase):
 
     def test_matrix_addition(self):
         m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
         m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
-        m3 = add(m1, m2)
+        m3 = operations.add(m1, m2)
 
         self.assertEqual(m3.matrix, {
             '1': {'1': 3, '2': 6},
@@ -16,7 +16,7 @@ class TestCalculatorOperations(unittest.TestCase):
 
     def test_matrix_scalar_multiplication(self):
         m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
-        m2 = multiplyWithScalar(m1, 3)
+        m2 = operations.multiplyWithScalar(m1, 3)
 
         self.assertEqual(m2.matrix, {
             '1': {'1': 3, '2': 9},
@@ -35,7 +35,7 @@ class TestCalculatorOperations(unittest.TestCase):
             '3': {'1': 0, '2': -1, '3': 2, '4': 1}
         })
 
-        m3 = multiplyMatrices(m1, m2)
+        m3 = operations.multiplyMatrices(m1, m2)
 
         self.assertEqual(m3.matrix, {
             '1': {'1': 1, '2': 3, '3': -2, '4': -2},

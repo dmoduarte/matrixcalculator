@@ -1,5 +1,5 @@
 import unittest
-from operation_chain import OperationChain, parseRequest
+from operations import operation_chain
 
 requestSample = [
     {
@@ -33,12 +33,38 @@ requestSample = [
 class TestOperationChain(unittest.TestCase):
 
     def test_operation_chain_size(self):
-        operationChain = parseRequest(requestSample)
+        operationChain = operation_chain.parseRequest(requestSample)
         self.assertEqual(operationChain.getSize(), 3)
 
-    def test_operation_chain_elements(self):
-        operationChain = parseRequest(requestSample)
+    def test_operation_chain_iterable(self):
+        operationChain = operation_chain.parseRequest(requestSample)
         
+        for index, operation in enumerate(operationChain):
+            if(index == 0):
+                self.compareParsedAgainstRequestedOperations(
+                    operation,
+                    0, 
+                    1, 
+                    2
+                )
+            elif(index == 1):
+                self.compareParsedAgainstRequestedOperations(
+                    operation,
+                    2, 
+                    3, 
+                    4
+                )   
+            elif(index == 2):
+                 self.compareParsedAgainstRequestedOperations(
+                    operationChain.getOperationAtIndex(2), 
+                    4, 
+                    5, 
+                    6
+                )
+
+    def test_operation_chain_elements(self):
+        operationChain = operation_chain.parseRequest(requestSample)
+ 
         self.compareParsedAgainstRequestedOperations(
             operationChain.getOperationAtIndex(0),
             0, 
@@ -74,7 +100,7 @@ class TestOperationChain(unittest.TestCase):
             parsedOp.operator,
             requestSample[requestedOpIdx]
         )
-
+        
         self.assertDictEqual(
             parsedOp.rightOperand,
             requestSample[rightRequestedOpIdx]

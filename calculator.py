@@ -33,8 +33,8 @@ def consumeRequest(request):
 def createPrecedenceArray(operationChain):
     heap = []
     for operationRequest in operationChain:
-        operationPriority = OperatorRank[operationRequest.getOperator()]
-
+        operationPriority = -1 * OperatorRank[operationRequest.getOperator()['op']].value
+        print( "%s = %s" % (OperatorRank[operationRequest.getOperator()['op']].name,operationPriority) )
         heapq.heappush(
             heap, (operationPriority, operationRequest)
         )
