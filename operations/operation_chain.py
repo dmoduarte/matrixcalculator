@@ -3,27 +3,26 @@ class OperationChain:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.nextOp = None
-        self.idx = 0
+        self.currentOp = None
+        self.iterating = False
         self.size = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.nextOp is None and self.idx > 0:
-            self.idx = 0
+        if self.currentOp is not None and self.currentOp.getNext() is None and self.iterating:
+            self.iterating = False
             raise StopIteration
 
-        if self.nextOp is None and self.idx == 0:
-            self.nextOp = self.head
-            self.idx += 1
-            return self.nextOp
+        elif self.currentOp is None and not self.iterating:
+            self.currentOp = self.head
+            self.iterating = True
+            return self.currentOp
         
-        next = self.nextOp
-        self.nextOp = self.nextOp.next
-        self.idx += 1
-        return next
+        self.currentOp = self.currentOp.getNext()
+        self.iterating = True
+        return self.currentOp
 
     def getOperationAtIndex(self, index):
         if index < 0 or index >= self.size:
@@ -74,6 +73,12 @@ class OperationChain:
 
         def setCalculated(self, flag):
             self.calculated = flag
+
+        def getNext(self):
+            return self.next
+
+        def getPrevious(self):
+            return self.previous        
 
         def getOperator(self):
             return self.operator	

@@ -36,6 +36,7 @@ class TestCalculator(unittest.TestCase):
     def test_operations_precedence(self):
         operations = operation_chain.parseRequest(requestSample)
         precedenceArray = calculator.createPrecedenceArray(operations)
+        print(precedenceArray)
         print(heapq.heappop(precedenceArray))
 
 if __name__ == '__main__':

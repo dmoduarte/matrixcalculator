@@ -35,8 +35,17 @@ class TestOperationChain(unittest.TestCase):
     def test_operation_chain_size(self):
         operationChain = operation_chain.parseRequest(requestSample)
         self.assertEqual(operationChain.getSize(), 3)
+    
+    def test_operation_chain_iterable_iterations(self):
+        operationChain = operation_chain.parseRequest(requestSample)
+        iterations = 0
 
-    def test_operation_chain_iterable(self):
+        for operation in operationChain:
+            iterations += 1
+
+        self.assertEqual(3, iterations)    
+
+    def test_operation_chain_iterable_elements(self):
         operationChain = operation_chain.parseRequest(requestSample)
         
         for index, operation in enumerate(operationChain):
