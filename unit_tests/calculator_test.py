@@ -29,7 +29,12 @@ class TestCalculator(MatrixCalculatorTestCases):
             2,
             3,
             4
-        )   
+        )  
+
+    def test_calculate_operations(self):        
+        result = calculator.consumeRequest(self.getRequestSample()) 
+
+        print(result)
 
 if __name__ == '__main__':
     unittest.main()

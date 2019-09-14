@@ -1,4 +1,4 @@
-import operations
+from operations import multiplyMatrices, multiplyWithScalar, add
 
 def calculateOperation(operation):
     #route to operator handler and calculate
@@ -9,7 +9,7 @@ def calculateOperation(operation):
 
 def operationMapping():
     return {
-        'KMULT': operations.multiplyWithScalar,
-        'MULT': operations.multiplyMatrices,
-        'ADD': operations.add
+        'KMULT': multiplyWithScalar,
+        'MULT': multiplyMatrices,
+        'ADD': add
     }
