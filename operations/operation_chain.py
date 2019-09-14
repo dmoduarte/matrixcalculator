@@ -35,9 +35,8 @@ class OperationChain:
             currentNode = currentNode.next
             idx += 1
             
-        return currentNode
+        return currentNode    
 
-    ####
     def addBack(self, operation):
         if self.head is None and self.tail is None:
             self.head = operation
@@ -59,6 +58,7 @@ class OperationChain:
             self.rightOperand = rightOperand
             self.next = None
             self.previous = None
+            self.calculated = False
 
         def setPrevious(self, operationRequest):
             self.previous = operationRequest
@@ -72,8 +72,8 @@ class OperationChain:
         def setRightOperand(self, rightOperand):
             self.rightOperand = rightOperand        
 
-        def setResult(self, result):
-            self.result = result
+        def setCalculated(self, flag):
+            self.calculated = flag
 
         def getOperator(self):
             return self.operator	
@@ -84,8 +84,8 @@ class OperationChain:
         def getRightOperand(self):
             return self.rightOperand    
 
-        def getResult(self):
-            return self.result 
+        def isCalculated(self):
+            return self.calculated 
 
 def parseRequest(request):
 

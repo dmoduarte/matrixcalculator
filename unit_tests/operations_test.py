@@ -1,6 +1,6 @@
 import unittest
 from matrix import Matrix
-from calculator import *
+from operations import *
 
 class TestCalculatorOperations(unittest.TestCase):
 
