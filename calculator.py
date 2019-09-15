@@ -29,7 +29,7 @@ def consumeRequest(request):
 
         operation.setResult(result)
         
-        operationChain.commit(operation)
+        operationChain.carryOut(operation)
         
     return result
 

@@ -48,7 +48,7 @@ class OperationChain:
         operation.setPositionInChain(self.size)
         self.size += 1	
     
-    def commit(self, operation):
+    def carryOut(self, operation):
         if operation.previous is not None:
             operation.previous.setRightOperand(operation.getResult())
             operation.previous.next = operation.next
@@ -60,6 +60,8 @@ class OperationChain:
         operation.previous = None 
         operation.next = None   
         del operation
+
+        self.size -= 1
 
     def getSize(self):
         return self.size
