@@ -17,7 +17,7 @@ class Multiply(base.OperationHandler):
         if(type(rightOperand) is Matrix):
             validator.checkMatrixValidity(rightOperand)
         elif (type(leftOperand) is not Number):   
-            raise ValueError("leftOperand type is not supported")     
+            raise ValueError("rightOperand type is not supported")     
 
         # Ensure matrix product is defined:
                 # m1*m2 is only possible if dim(m1) = mxn and

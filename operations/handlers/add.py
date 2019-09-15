@@ -8,6 +8,12 @@ class Add(base.OperationHandler):
         m1 = operation.getLeftOperand() 
         m2 = operation.getRightOperand()
 
+        if(type(m1) is not Matrix):
+            raise ValueError("leftOperand type is not supported")
+
+        if(type(m2) is not Matrix):
+            raise ValueError("rightOperand type is not supported")
+    
         validator.checkMatrixValidity(m1)
         validator.checkMatrixValidity(m2)
         validator.checkEqualSize(m1, m2)
