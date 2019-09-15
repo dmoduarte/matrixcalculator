@@ -32,9 +32,49 @@ class TestCalculator(MatrixCalculatorTestCases):
         )  
 
     def test_calculate_operations(self):      
-        result = calculator.consumeRequest(self.getRequestSample()) 
+        result = calculator.consumeRequest(self.getRequestSample(sample="C")) 
 
-        print(result)
+        expectedResult = {
+            '1': {'1': 10}
+        }
+
+        self.assertDictEqual(
+            result,
+            expectedResult
+        )
+
+        newSample = self.getRequestSample(sample="C").copy()
+
+        newSample += [
+            {"op": "MULT"},
+
+            {
+                "1": {"1": 2}
+            }
+        ]
+
+        result = calculator.consumeRequest(newSample)
+
+        expectedResult = {
+            '1': {'1': 14}
+        }
+
+        self.assertDictEqual(
+            result,
+            expectedResult
+        )
+
+        result = calculator.consumeRequest(self.getRequestSample(sample="B")) 
+        
+        expectedResult = {
+            '1': {'1': 109, '2': 34},
+            '2': {'1': 142, '2': 42}
+        }
+        
+        self.assertDictEqual(
+            result,
+            expectedResult
+        )
 
 if __name__ == '__main__':
     unittest.main()

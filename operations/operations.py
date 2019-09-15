@@ -4,10 +4,12 @@ from matrix import *
 
 def delegateOperation(leftMatrix, rightMatrix, operator):
     #delegate operation to handler and calculate
-    return operationMapping()[operator](
+    result =  operationMapping()[operator](
             leftMatrix,
             rightMatrix
-        )
+        ) 
+        
+    return result 
 
 def operationMapping():
     return {

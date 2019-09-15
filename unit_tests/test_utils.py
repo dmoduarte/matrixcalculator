@@ -1,55 +1,39 @@
 import unittest
-
-requestSample = [
-        {
-            "1": {"1": 1, "2": 3},
-            "2": {"1": 3, "2": 4}
-        },
-
-        {"op": "ADD"},
-
-        {
-            "1": {"1": 2, "2": 3},
-            "2": {"1": 4, "2": 4}
-        },
-
-        {"op": "ADD"},
-
-        {
-            "1": {"1": 1, "2": 0, "3": -3},
-            "2": {"1": -2, "2": 4, "3": 1}
-        },
-
-        {"op": "MULT"},
-
-        {
-            "1": {"1": 1, "2": 0, "3": 4, "4": 1},
-            "2": {"1": -2, "2": 3, "3": -1, "4": 5},
-            "3": {"1": 0, "2": -1, "3": 2, "4": 1}
-        }
-    ]
+from request_samples import *
 
 class MatrixCalculatorTestCases(unittest.TestCase):
 
-    def getRequestSample(self):
-        return requestSample
+    def getRequestSample(self, **sample):
+        chosenSample = sample.get('sample') 
+
+        samples = {
+            "A":requestSampleA,
+            "B":requestSampleB,
+            "C":requestSampleC
+        }
+
+        return requestSampleA if chosenSample is None else samples[chosenSample]
 
     def compareParsedAgainstRequestSample(self,
                                             parsedOp,
                                             leftRequestedOpIdx,
                                             requestedOpIdx,
-                                            rightRequestedOpIdx):                         
+                                            rightRequestedOpIdx,
+                                            **sample):
+
+        chosenSample = self.getRequestSample(sample = sample.get("sample")) 
+
         self.assertDictEqual(
             parsedOp.leftOperand,
-            requestSample[leftRequestedOpIdx]
+            chosenSample[leftRequestedOpIdx]
         )
 
         self.assertDictEqual(
             parsedOp.operator,
-            requestSample[requestedOpIdx]
+            chosenSample[requestedOpIdx]
         )
 
         self.assertDictEqual(
             parsedOp.rightOperand,
-            requestSample[rightRequestedOpIdx]
+            chosenSample[rightRequestedOpIdx]
         )

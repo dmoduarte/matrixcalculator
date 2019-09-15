@@ -1,15 +1,15 @@
 import unittest
 from operations import operation_chain
-from test_utils import requestSample, MatrixCalculatorTestCases
+from test_utils import MatrixCalculatorTestCases
 
 class TestOperationChain(MatrixCalculatorTestCases):
 
     def test_operation_chain_size(self):
-        operationChain = operation_chain.parseRequest(requestSample)
+        operationChain = operation_chain.parseRequest(self.getRequestSample())
         self.assertEqual(operationChain.getSize(), 3)
     
     def test_operation_chain_iterable_iterations(self):
-        operationChain = operation_chain.parseRequest(requestSample)
+        operationChain = operation_chain.parseRequest(self.getRequestSample())
         iterations = 0
 
         for operation in operationChain:
@@ -18,7 +18,7 @@ class TestOperationChain(MatrixCalculatorTestCases):
         self.assertEqual(3, iterations)    
 
     def test_operation_chain_iterable_elements(self):
-        operationChain = operation_chain.parseRequest(requestSample)
+        operationChain = operation_chain.parseRequest(self.getRequestSample())
         
         for index, operation in enumerate(operationChain):
             if(index == 0):
@@ -44,7 +44,7 @@ class TestOperationChain(MatrixCalculatorTestCases):
                 )
 
     def test_operation_chain_elements(self):
-        operationChain = operation_chain.parseRequest(requestSample)
+        operationChain = operation_chain.parseRequest(self.getRequestSample())
  
         self.compareParsedAgainstRequestSample(
             operationChain.getOperationAtIndex(0),

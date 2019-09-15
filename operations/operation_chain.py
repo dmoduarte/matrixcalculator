@@ -48,6 +48,19 @@ class OperationChain:
         operation.setPositionInChain(self.size)
         self.size += 1	
     
+    def commit(self, operation):
+        if operation.previous is not None:
+            operation.previous.setRightOperand(operation.getResult())
+            operation.previous.next = operation.next
+
+        if operation.next is not None:
+            operation.next.setLeftOperand(operation.getResult())
+            operation.next.previous = operation.previous
+
+        operation.previous = None 
+        operation.next = None   
+        del operation
+
     def getSize(self):
         return self.size
 
@@ -59,7 +72,7 @@ class OperationChain:
             self.next = None
             self.previous = None
             self.positionInChain = -1
-            self.calculated = False
+            self.result = None
 
         def setPrevious(self, operationRequest):
             self.previous = operationRequest
@@ -76,8 +89,8 @@ class OperationChain:
         def setPositionInChain(self, position):
              self.positionInChain = position      
 
-        def setCalculated(self, flag):
-            self.calculated = flag
+        def setResult(self, result):
+            self.result = result
 
         def getNext(self):
             return self.next
@@ -97,8 +110,8 @@ class OperationChain:
         def getPositionInChain(self):
             return self.positionInChain;       
 
-        def isCalculated(self):
-            return self.calculated 
+        def getResult(self):
+            return self.result 
 
 def parseRequest(request):
 

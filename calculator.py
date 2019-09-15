@@ -25,17 +25,13 @@ def consumeRequest(request):
             Matrix(operation.getLeftOperand()),
             Matrix(operation.getRightOperand()),
             operation.getOperator()['op']
-        )
+        ).matrix
 
-        operation.setCalculated(True)
+        operation.setResult(result)
         
-        if operation.previous is not None and not operation.previous.isCalculated():
-            operation.previous.setRightOperand(result.matrix)
-
-        if operation.next is not None and not operation.next.isCalculated():
-            operation.next.setLeftOperand(result.matrix)
+        operationChain.commit(operation)
         
-    return result.matrix
+    return result
 
 def createPrecedenceArray(operationChain):
     heap = []
