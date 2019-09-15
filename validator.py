@@ -4,8 +4,8 @@ def checkEqualSize(m1, m2):
 
 
 def checkMatrixValidity(m):
-    firstRowLen = len(m.matrix.values()[0])
-    sliced = m.matrix.values()[1:]
+    firstRowLen = len(list(m.matrix.values())[0])
+    sliced = list(m.matrix.values())[1:]
     for row in sliced:
         if len(row) != firstRowLen:
             raise ValueError("Matrix is not valid")
