@@ -31,7 +31,7 @@ class TestCalculator(MatrixCalculatorTestCases):
             4
         )  
 
-    def test_calculate_operations(self):        
+    def test_calculate_operations(self):      
         result = calculator.consumeRequest(self.getRequestSample()) 
 
         print(result)

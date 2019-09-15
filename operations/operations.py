@@ -2,6 +2,20 @@ import json
 from validator import *
 from matrix import *
 
+def delegateOperation(leftMatrix, rightMatrix, operator):
+    #delegate operation to handler and calculate
+    return operationMapping()[operator](
+            leftMatrix,
+            rightMatrix
+        )
+
+def operationMapping():
+    return {
+        'KMULT': multiplyWithScalar,
+        'MULT': multiplyMatrices,
+        'ADD': add
+    }
+
 # Matrix addition: adds m1 with m2 both with dimension = mxn, resulting in matrix m3 with dimension = mxn
 
 

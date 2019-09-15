@@ -1,7 +1,7 @@
 from enum import Enum
 import heapq
 from matrix import Matrix
-from operations import operation_chain, delegate
+from operations import operation_chain, operations
 
 class OperatorRank(Enum):
     KMULT = 4
@@ -11,30 +11,37 @@ class OperatorRank(Enum):
 
 def consumeRequest(request):
     operationChain = operation_chain.parseRequest(request)
-    #validate chain
+    
+    #todo: validate chain
+    
     operationsInPrecedence = createPrecedenceArray(operationChain)
+    
     result = Matrix({})
 
     for i in range(len(operationsInPrecedence)):
-        operation = heapq.heappop(operationsInPrecedence)
+        operation = heapq.heappop(operationsInPrecedence)[2]
 
-        result = delegate.calculateOperation(operation)
+        result = operations.delegateOperation(
+            Matrix(operation.getLeftOperand()),
+            Matrix(operation.getRightOperand()),
+            operation.getOperator()['op']
+        )
 
         operation.setCalculated(True)
         
         if operation.previous is not None and not operation.previous.isCalculated():
-            operation.previous.setRightOperand(result)
+            operation.previous.setRightOperand(result.matrix)
 
         if operation.next is not None and not operation.next.isCalculated():
-            operation.next.setLeftOperand(result)
+            operation.next.setLeftOperand(result.matrix)
         
-    return result
+    return result.matrix
 
 def createPrecedenceArray(operationChain):
     heap = []
     for operationRequest in operationChain:
         operationPriority = -1 * OperatorRank[operationRequest.getOperator()['op']].value
-        
+
         heapq.heappush(
             heap, (operationPriority, operationRequest.getPositionInChain(), operationRequest)
         )
