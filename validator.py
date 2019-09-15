@@ -25,9 +25,6 @@ def checkMatrixProduct(m1, m2):
     if dimM1['n'] != dimM2['m']:
     	raise ValueError('Matrix product not defined')
 
-    productDefinition = {}
-    productDefinition['rows'] = dimM1['m']
-    productDefinition['cols'] = dimM2['n']
     return
 
 # checks if m1 and m2 have the same dimension i.e both have dimension = mxn

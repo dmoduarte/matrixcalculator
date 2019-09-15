@@ -97,10 +97,6 @@ def multiplyMatrices(m1, m2):
 def dotProduct(vector1, vector2):
     return sum([vector1[i]*vector2[i] for i in range(len(vector1))])
 
-
-m1 = Matrix({'1': {'1': 1, '2': 3}, '2': {'1': 3, '2': 4}})
-m2 = Matrix({'1': {'1': 2, '2': 3}, '2': {'1': 4, '2': 4}})
-
 #print(json.dumps(vars(m1), indent=4))
 #print(json.dumps(vars(m2), indent=4))
 #print(json.dumps(vars(add(m1, m2)), indent=4))
